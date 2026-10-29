@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>iimt_ros2_moveit_config</name>
+  <version>0.3.0</version>
+  <description>
+     An automatically generated package with all the configuration and launch files for using the iimt5 with the MoveIt Motion Planning Framework
+  </description>
+  <maintainer email="xiayan@mail.com">xiayan</maintainer>
+
+  <license>Apache License 2.0</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <exec_depend>launch</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+
+
+  <depend>moveit_core</depend>
+  <depend>moveit_ros_planning_interface</depend>
+
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>joint_state_publisher</exec_depend>
+  <exec_depend>joint_state_publisher_gui</exec_depend>
+  <exec_depend>joint_state_broadcaster</exec_depend>
+  <exec_depend>controller_manager</exec_depend>
+  <exec_depend>joint_trajectory_controller</exec_depend>
+  <exec_depend>iimt_ros2_control</exec_depend>
+  <exec_depend>iimt_ros2_driver</exec_depend>
+  <exec_depend>ament_index_python</exec_depend>
+  <exec_depend>python3-yaml</exec_depend>
+  <exec_depend>moveit_ros_move_group</exec_depend>
+  <exec_depend>moveit_simple_controller_manager</exec_depend>
+  <exec_depend>moveit_kinematics</exec_depend>
+  <exec_depend>moveit_planners_ompl</exec_depend>
+  <exec_depend>moveit_ros_visualization</exec_depend>
+  <exec_depend>rviz2</exec_depend>
+  <exec_depend>iimt_ros2_description</exec_depend>
+  <exec_depend>urdf</exec_depend>
+  <!-- Legacy db:=true is an optional separately installed Mongo warehouse.
+       Current direct-driver launches do not use it; no Humble binary is available
+       in the configured ROS apt repository. See project docs/troubleshooting.md. -->
+  <exec_depend>xacro</exec_depend>
+
+
+  <export>
+      <build_type>ament_cmake</build_type>
+  </export>
+</package>

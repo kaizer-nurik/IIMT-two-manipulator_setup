@@ -1,0 +1,15 @@
+.git
+.env
+.omx
+**/__pycache__
+**/*.pyc
+**/.ipynb_checkpoints
+ros2_ws/build
+ros2_ws/install
+ros2_ws/log
+results
+.venv
+venv
+
+**/.pytest_cache
+**/.ruff_cache

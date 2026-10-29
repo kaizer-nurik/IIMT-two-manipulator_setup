@@ -1,0 +1,5 @@
+<library path="iimt_system">
+  <class name="iimt_ros2_control/IimtSystem" type="iimt_ros2_control::IimtSystem" base_class_type="hardware_interface::SystemInterface">
+    <description>IIMT measured-feedback position interface with serialized SDK worker.</description>
+  </class>
+</library>

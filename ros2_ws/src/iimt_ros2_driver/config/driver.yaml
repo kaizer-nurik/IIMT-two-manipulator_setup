@@ -1,0 +1,42 @@
+/iimt_ros2_driver:
+  ros__parameters:
+    joint_prefix: ""  # Empty preserves the single-arm joint names.
+    robot_ip: "192.168.50.148"
+    port: 29999
+    enable_motion: false
+    use_mock_hardware: false
+    trajectory_advance_ms: 0.0  # Opt-in dispatch pre-roll; nominal feedback time is unchanged.
+    command_rate: 30.0
+    # Independent reader; network waits never hold the snapshot mutex.
+    read_rate: 30.0
+    servo:
+      a: 5.0
+      v: 3.0
+      # servo.period автоматически равен 1 / command_rate.
+      lookahead_time: 0.012
+      gain: 0.0
+    # sdk: прежний блокирующий API. tcp: ограниченный по времени запрос того же протокола.
+    # tcp проверен на локальном сервере; совместимость firmware подтвердить без движения.
+    feedback_transport: tcp
+    # Feedback has its own thread: allow measured latency without blocking ServoJ.
+    # Provisional budget; state_timeout remains the hard freshness guard.
+    read_timeout: 0.1
+    # Строгая свежесть состояния. read_timeout действует только в режиме tcp.
+    # ServoJ/Stop/Login SDK остаются блокирующими; hard realtime не гарантируется.
+    state_timeout: 0.2
+    # Мягкий допуск сверх периода: WARN, без растягивания траектории и повтора точек.
+    max_lateness: 0.1
+    # Независимая строгая проверка расхождения ROS и steady clock.
+    clock_jump_tolerance: 0.1
+    diagnostics_period: 1.0
+    start_tolerance: 0.02
+    path_tolerance: 3.0
+    goal_tolerance: 0.003
+    goal_time_tolerance: 2.0
+    # Консервативные ограничения CI-05; не сертифицированные пределы производителя.
+    limits:
+      min_position: [-6.2832, -2.6167, -2.8783, -3.0528, -3.0528, -6.2832]
+      max_position: [6.2832, 2.6167, 2.8783, 3.0528, 3.0528, 6.2832]
+      max_velocity: [3.1415, 3.1415, 3.1415, 3.1415, 3.1415, 3.1415]
+      max_acceleration: [1.875, 2.500, 3.750, 3.125, 3.750, 3.750]
+      max_step: [0.02, 0.02, 0.02, 0.02, 0.02, 0.02]

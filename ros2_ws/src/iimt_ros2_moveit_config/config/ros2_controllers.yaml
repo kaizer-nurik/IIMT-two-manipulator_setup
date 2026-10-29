@@ -1,0 +1,32 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 30  # Must match 1 / servo.period in hardware.yaml.
+    use_sim_time: false
+    iimt_group_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+iimt_group_controller:
+  ros__parameters:
+    joints: [shoulder_joint, upper_arm_joint, forearm_joint, wrist_1_joint, wrist_2_joint, wrist_3_joint]
+    command_interfaces: [position]
+    state_interfaces: [position, velocity]
+    open_loop_control: false
+    set_last_command_interface_value_as_state_on_activation: false
+    allow_partial_joints_goal: false
+    allow_integration_in_goal_trajectories: false
+    # Excel's last dq is about 1e-4 rad/s: preserve it instead of silently rewriting derivatives.
+    allow_nonzero_velocity_at_trajectory_end: true
+    interpolation_method: splines
+    state_publish_rate: 30.0
+    action_monitor_rate: 50.0
+    constraints:
+      goal_time: 0.25  # Finite acceptance margin, NOT guaranteed timing accuracy.
+      stopped_velocity_tolerance: 0.01  # Not proof of stopped motion in position-only Humble JTC.
+      shoulder_joint: {trajectory: 0.05, goal: 0.003}
+      upper_arm_joint: {trajectory: 0.05, goal: 0.003}
+      forearm_joint: {trajectory: 0.05, goal: 0.003}
+      wrist_1_joint: {trajectory: 0.05, goal: 0.003}
+      wrist_2_joint: {trajectory: 0.05, goal: 0.003}
+      wrist_3_joint: {trajectory: 0.05, goal: 0.003}

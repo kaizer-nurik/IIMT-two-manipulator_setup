@@ -1,0 +1,35 @@
+cmake_minimum_required(VERSION 3.16)
+project(iimt_control_core_tests LANGUAGES CXX)
+
+# Also works without a ROS installation: cmake -S test -B /tmp/iimt-core-tests
+if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
+  enable_testing()
+endif()
+
+add_executable(iimt_control_core_test control_core_test.cpp)
+target_compile_features(iimt_control_core_test PRIVATE cxx_std_17)
+target_include_directories(iimt_control_core_test PRIVATE ../include)
+target_compile_options(iimt_control_core_test PRIVATE -Wall -Wextra -Wpedantic -Werror)
+add_test(NAME iimt_control_core_test COMMAND iimt_control_core_test)
+
+set(IIMT_SDK_INCLUDE "${CMAKE_CURRENT_SOURCE_DIR}/../../iimt_ros2_driver/include")
+add_library(iimt_fake_sdk SHARED fake_sdk.cpp)
+target_include_directories(iimt_fake_sdk PRIVATE "${IIMT_SDK_INCLUDE}")
+target_compile_features(iimt_fake_sdk PRIVATE cxx_std_17)
+add_executable(iimt_transport_test transport_test.cpp ../src/transport.cpp)
+target_include_directories(iimt_transport_test PRIVATE ../include "${IIMT_SDK_INCLUDE}")
+target_compile_features(iimt_transport_test PRIVATE cxx_std_17)
+target_compile_options(iimt_transport_test PRIVATE -Wall -Wextra -Wpedantic -Werror)
+target_link_libraries(iimt_transport_test PRIVATE iimt_fake_sdk ${CMAKE_DL_LIBS})
+add_test(NAME iimt_transport_test COMMAND iimt_transport_test $<TARGET_FILE:iimt_fake_sdk>)
+
+# Real lifecycle/worker check is intentionally omitted in standalone non-ROS builds.
+if(TARGET iimt_system)
+  add_executable(iimt_system_test system_test.cpp)
+  target_compile_features(iimt_system_test PRIVATE cxx_std_17)
+  target_include_directories(iimt_system_test PRIVATE "${IIMT_SDK_INCLUDE}")
+  ament_target_dependencies(iimt_system_test hardware_interface rclcpp rclcpp_lifecycle diagnostic_msgs action_msgs)
+  target_link_libraries(iimt_system_test iimt_system iimt_fake_sdk)
+  add_test(NAME iimt_system_test COMMAND iimt_system_test $<TARGET_FILE:iimt_fake_sdk>)
+  set_tests_properties(iimt_system_test PROPERTIES TIMEOUT 30)
+endif()

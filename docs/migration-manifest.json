@@ -1,0 +1,62 @@
+{
+  "backup": "/workspace/.migration_backup/20261027T043334Z",
+  "packages": {
+    "iimt_dual_control": {
+      "source": "/workspace/ros2_ws/src/iimt_robot_ros2-humble/iimt_dual_control",
+      "destination": "/workspace/iimt_manipulation/ros2_ws/src/iimt_dual_control"
+    },
+    "iimt_dual_description": {
+      "source": "/workspace/ros2_ws/src/iimt_robot_ros2-humble/iimt_dual_description",
+      "destination": "/workspace/iimt_manipulation/ros2_ws/src/iimt_dual_description"
+    },
+    "iimt_dual_moveit_config": {
+      "source": "/workspace/ros2_ws/src/iimt_robot_ros2-humble/iimt_dual_moveit_config",
+      "destination": "/workspace/iimt_manipulation/ros2_ws/src/iimt_dual_moveit_config"
+    },
+    "iimt_ros2_control": {
+      "source": "/workspace/ros2_ws/src/iimt_robot_ros2-humble/iimt_ros2_control",
+      "destination": "/workspace/iimt_manipulation/ros2_ws/src/iimt_ros2_control"
+    },
+    "iimt_ros2_description": {
+      "source": "/workspace/ros2_ws/src/iimt_robot_ros2-humble/iimt_ros2_description",
+      "destination": "/workspace/iimt_manipulation/ros2_ws/src/iimt_ros2_description"
+    },
+    "iimt_ros2_driver": {
+      "source": "/workspace/ros2_ws/src/iimt_robot_ros2-humble/iimt_ros2_driver",
+      "destination": "/workspace/iimt_manipulation/ros2_ws/src/iimt_ros2_driver"
+    },
+    "iimt_ros2_moveit_config": {
+      "source": "/workspace/ros2_ws/src/iimt_robot_ros2-humble/iimt_ros2_moveit_config",
+      "destination": "/workspace/iimt_manipulation/ros2_ws/src/iimt_ros2_moveit_config"
+    },
+    "iimt_ros2_msgs": {
+      "source": "/workspace/ros2_ws/src/iimt_robot_ros2-humble/iimt_ros2_msgs",
+      "destination": "/workspace/iimt_manipulation/ros2_ws/src/iimt_ros2_msgs"
+    },
+    "iimt_ros2_trajectory_action": {
+      "source": "/workspace/ros2_ws/src/iimt_robot_ros2-humble/iimt_ros2_trajectory_action",
+      "destination": "/workspace/iimt_manipulation/ros2_ws/src/iimt_ros2_trajectory_action"
+    }
+  },
+  "notebooks": {
+    "iimt_ci05_left_csv_ethernet.ipynb": {
+      "backup_sha256": "b1dc9b01f7454e1a977f65ce7242fe784155e0b178707147a3a039cf7d9ce53b",
+      "changes": [
+        "project-relative data/ and results/",
+        "motion flags and SAVE=False",
+        "outputs cleared",
+        "dual approach scales 0.1"
+      ]
+    },
+    "iimt_ci05_dual_csv_ethernet.ipynb": {
+      "backup_sha256": "c10678df0984d082f3b0b0b504588fac75d40aa04cd674e5ebbdc1f35ff6cc81",
+      "changes": [
+        "project-relative data/ and results/",
+        "motion flags and SAVE=False",
+        "outputs cleared",
+        "dual approach scales 0.1",
+        "distribution random demo: one iteration, max delta 0.25 rad"
+      ]
+    }
+  }
+}

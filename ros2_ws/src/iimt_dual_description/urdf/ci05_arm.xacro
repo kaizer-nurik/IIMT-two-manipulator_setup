@@ -1,0 +1,202 @@
+<?xml version="1.0"?>
+<!-- Geometry copied from the verified single-arm iimt5.urdf; no hardware blocks. -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+<xacro:macro name="ci05_arm" params="prefix">
+  <link name="${prefix}base_link">
+    <inertial>
+      <origin xyz="-0.00059464 -0.00060418 0.020571" rpy="0 0 0" />
+      <mass value="1.1424" />
+      <inertia ixx="0.0019632" ixy="2.3301E-05" ixz="-8.7193E-06" iyy="0.0019628" iyz="-8.9679E-06" izz="0.0033635" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://iimt_ros2_description/meshes/iimt5/visual/base_link.dae" />
+      </geometry>
+      <material name="">
+        <color rgba="0.69804 0.69804 0.69804 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://iimt_ros2_description/meshes/iimt5/collision/base_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="${prefix}shoulder_link">
+    <inertial>
+      <origin xyz="0.00023806 -0.0054616 -0.027849" rpy="0 0 0" />
+      <mass value="4.7527" />
+      <inertia ixx="0.0043887" ixy="-8.5565E-06" ixz="-8.1251E-06" iyy="0.0043683" iyz="0.00023986" izz="0.0061208" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://iimt_ros2_description/meshes/iimt5/visual/shoulder_link.dae" />
+      </geometry>
+      <material name="">
+        <color rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://iimt_ros2_description/meshes/iimt5/collision/shoulder_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="${prefix}shoulder_joint" type="revolute">
+    <origin xyz="0 0 0.139" rpy="0 0 0" />
+    <parent link="${prefix}base_link" />
+    <child link="${prefix}shoulder_link" />
+    <axis xyz="0 0 1" />
+    <limit lower="-6.2832" upper="6.2832" effort="130" velocity="3.14" />
+  </joint>
+  <link name="${prefix}upper_arm_link">
+    <inertial>
+      <origin xyz="-0.16754 -1.0507E-05 0.13275" rpy="0 0 0" />
+      <mass value="9.0173" />
+      <inertia ixx="0.0082644" ixy="5.4662E-06" ixz="6.8958E-05" iyy="0.015153" iyz="-2.8896E-06" izz="0.017899" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://iimt_ros2_description/meshes/iimt5/visual/upper_arm_link.dae" />
+      </geometry>
+      <material name="">
+        <color rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://iimt_ros2_description/meshes/iimt5/collision/upper_arm_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="${prefix}upper_arm_joint" type="revolute">
+    <origin xyz="0 0 0" rpy="1.5708 0 0" />
+    <parent link="${prefix}shoulder_link" />
+    <child link="${prefix}upper_arm_link" />
+    <axis xyz="0 0 1" />
+    <limit lower="-2.6167" upper="2.6167" effort="156" velocity="2.6167" />
+  </joint>
+  <link name="${prefix}forearm_link">
+    <inertial>
+      <origin xyz="-0.26237 -0.00025322 0.032714" rpy="0 0 0" />
+      <mass value="3.2477" />
+      <inertia ixx="0.0030652" ixy="-8.0411E-07" ixz="-0.0014119" iyy="0.018146" iyz="-4.9842E-06" izz="0.018357" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://iimt_ros2_description/meshes/iimt5/visual/fore_arm_link.dae" />
+      </geometry>
+      <material name="">
+        <color rgba="0.69804 0.69804 0.69804 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://iimt_ros2_description/meshes/iimt5/collision/fore_arm_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="${prefix}forearm_joint" type="revolute">
+    <origin xyz="-0.3945 0 0" rpy="0 0 0" />
+    <parent link="${prefix}upper_arm_link" />
+    <child link="${prefix}forearm_link" />
+    <axis xyz="0 0 1" />
+    <limit lower="-2.8783" upper="2.8783" effort="95" velocity="3.14" />
+  </joint>
+  <link name="${prefix}wrist_1_link">
+    <inertial>
+      <origin xyz="-0.00045661 -0.018467 -0.0060117" rpy="0 0 0" />
+      <mass value="1.7863" />
+      <inertia ixx="0.0011898" ixy="5.178E-06" ixz="2.3072E-06" iyy="0.0015106" iyz="0.00010468" izz="0.0011292" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://iimt_ros2_description/meshes/iimt5/visual/wrist_1_link.dae" />
+      </geometry>
+      <material name="">
+        <color rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://iimt_ros2_description/meshes/iimt5/collision/wrist_1_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="${prefix}wrist_1_joint" type="revolute">
+    <origin xyz="-0.381 0 0.143" rpy="0 0 0" />
+    <parent link="${prefix}forearm_link" />
+    <child link="${prefix}wrist_1_link" />
+    <axis xyz="0 0 1" />
+    <limit lower="-3.0528" upper="3.0528" effort="35" velocity="3.14" />
+  </joint>
+  <link name="${prefix}wrist_2_link">
+    <inertial>
+      <origin xyz="0.00045661 0.018467 -0.0060117" rpy="0 0 0" />
+      <mass value="1.7863" />
+      <inertia ixx="0.0011898" ixy="5.178E-06" ixz="-2.3072E-06" iyy="0.0015106" iyz="-0.00010468" izz="0.0011292" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://iimt_ros2_description/meshes/iimt5/visual/wrist_2_link.dae" />
+      </geometry>
+      <material name="">
+        <color rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://iimt_ros2_description/meshes/iimt5/collision/wrist_2_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="${prefix}wrist_2_joint" type="revolute">
+    <origin xyz="0 -0.1245 0" rpy="1.5708 0 0" />
+    <parent link="${prefix}wrist_1_link" />
+    <child link="${prefix}wrist_2_link" />
+    <axis xyz="0 0 1" />
+    <limit lower="-3.0528" upper="3.0528" effort="35" velocity="3.14" />
+  </joint>
+  <link name="${prefix}wrist_3_link">
+    <inertial>
+      <origin xyz="-2.766E-05 2.1119E-05 -0.01581" rpy="0 0 0" />
+      <mass value="0.42423" />
+      <inertia ixx="0.00031444" ixy="1.1817E-07" ixz="8.2188E-09" iyy="0.00029777" iyz="-4.0228E-08" izz="0.00049472" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://iimt_ros2_description/meshes/iimt5/visual/wrist_3_link.dae" />
+      </geometry>
+      <material name="">
+        <color rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://iimt_ros2_description/meshes/iimt5/collision/wrist_3_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="${prefix}wrist_3_joint" type="revolute">
+    <origin xyz="0 0.103 0" rpy="-1.5708 0 0" />
+    <parent link="${prefix}wrist_2_link" />
+    <child link="${prefix}wrist_3_link" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-6.2832" upper="6.2832" effort="35" velocity="3.14" />
+  </joint>
+</xacro:macro>
+</robot>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>iimt_ros2_control</name><version>0.1.0</version>
+  <description>Measured-feedback ros2_control hardware adapter for IIMT robots.</description>
+  <maintainer email="maintainer@example.com">IIMT workspace maintainers</maintainer>
+  <license>Apache-2.0</license>
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <depend>action_msgs</depend>
+  <depend>iimt_ros2_driver</depend>
+  <depend>hardware_interface</depend><depend>pluginlib</depend><depend>rclcpp</depend>
+  <depend>rclcpp_lifecycle</depend><depend>diagnostic_msgs</depend><depend>rcl_interfaces</depend>
+  <export><build_type>ament_cmake</build_type></export>
+</package>

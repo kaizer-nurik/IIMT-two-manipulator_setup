@@ -1,0 +1,9 @@
+# Default initial positions for iimt5's ros2_control fake system
+
+initial_positions:
+  shoulder_joint: 0
+  upper_arm_joint: 0
+  forearm_joint: 0
+  wrist_1_joint: 0
+  wrist_2_joint: 0
+  wrist_3_joint: 0

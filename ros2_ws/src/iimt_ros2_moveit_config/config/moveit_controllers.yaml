@@ -1,0 +1,14 @@
+controller_names:
+  - iimt_group_controller
+
+iimt_group_controller:
+  type: FollowJointTrajectory
+  action_ns: follow_joint_trajectory
+  default: true
+  joints:
+    - shoulder_joint
+    - upper_arm_joint
+    - forearm_joint
+    - wrist_1_joint
+    - wrist_2_joint
+    - wrist_3_joint

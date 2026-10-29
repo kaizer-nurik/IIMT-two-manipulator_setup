@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>iimt_dual_description</name>
+  <version>0.1.0</version>
+  <description>Dual CI-05 direct SDK stack.</description>
+  <maintainer email="maintainer@example.com">IIMT ROS maintainers</maintainer>
+  <license>BSD-3-Clause</license>
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <exec_depend>iimt_ros2_description</exec_depend>
+  <exec_depend>xacro</exec_depend>
+  <test_depend>python3</test_depend>
+  <test_depend>ament_index_python</test_depend>
+  <export><build_type>ament_cmake</build_type></export>
+</package>

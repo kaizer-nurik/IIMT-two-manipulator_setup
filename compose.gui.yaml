@@ -1,0 +1,22 @@
+# Optional trusted local X11 connection. Supply a real Xauthority cookie file;
+# never use xhost +. Enable LAUNCH_RVIZ=true in .env when using this override.
+services:
+  single:
+    environment:
+      DISPLAY: ${DISPLAY:?Set DISPLAY for local X11}
+      # XAUTHORITY: /tmp/iimt.xauthority
+      QT_X11_NO_MITSHM: "1"
+      # DISPLAY: ":1"
+      QT_QPA_PLATFORM: xcb
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:ro
+      # - ${XAUTHORITY:?Set XAUTHORITY to an existing cookie file}:/tmp/iimt.xauthority:ro
+  dual:
+    environment:
+      DISPLAY: ${DISPLAY:?Set DISPLAY for local X11}
+      # XAUTHORITY: /tmp/iimt.xauthority
+      QT_X11_NO_MITSHM: "1"
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:ro
+      # - ${XAUTHORITY:?Set XAUTHORITY to an existing cookie file}:/tmp/iimt.xauthority:ro
+      

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<robot name="iimt_dual" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:arg name="left_base_xyz" default="-0.0008297 -0.5380000 0.0818739"/>
+  <xacro:arg name="left_base_rpy" default="0 0 -0.6981317008"/>
+  <!-- Mounts from workspace robot.urdf, with world = its root.
+       Right base pose is RELATIVE TO LEFT BASE: inverse(T_root_left) * T_root_right. -->
+  <xacro:arg name="right_base_xyz" default="-0.345440489323 0.411679944176 -0.082000000000"/>
+  <xacro:arg name="right_base_rpy" default="0 0 0"/>
+  <xacro:include filename="$(find iimt_dual_description)/urdf/ci05_arm.xacro"/>
+  <link name="world"/>
+  <xacro:ci05_arm prefix="left_"/>
+  <xacro:ci05_arm prefix="right_"/>
+  <joint name="world_to_left_base" type="fixed">
+    <parent link="world"/><child link="left_base_link"/>
+    <origin xyz="$(arg left_base_xyz)" rpy="$(arg left_base_rpy)"/>
+  </joint>
+  <joint name="left_to_right_base" type="fixed">
+    <parent link="left_base_link"/><child link="right_base_link"/>
+    <origin xyz="$(arg right_base_xyz)" rpy="$(arg right_base_rpy)"/>
+  </joint>
+</robot>

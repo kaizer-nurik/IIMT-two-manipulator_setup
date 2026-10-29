@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="iimt">
+  <xacro:arg name="robot_type" default="5"/>
+  <xacro:arg name="robot_ip" default="192.168.50.148"/>
+  <xacro:arg name="hardware_parameters_file" default=""/>
+  <xacro:arg name="sdk_library_path" default=""/>
+  <xacro:arg name="controller_update_rate" default="125"/>
+  <xacro:arg name="enable_motion" default="false"/>
+  <xacro:arg name="use_mock_hardware" default="false"/>
+  <xacro:include filename="$(find iimt_ros2_description)/urdf/iimt$(arg robot_type).urdf"/>
+  <xacro:property name="initial" value="${xacro.load_yaml('$(find iimt_ros2_description)/config/initial_positions.yaml')['initial_positions']}"/>
+  <xacro:macro name="controlled_joint" params="joint_name">
+    <joint name="${joint_name}">
+      <command_interface name="position"/>
+      <state_interface name="position">
+        <!-- Real hardware reads encoders; initial_value is only for explicit mock mode. -->
+        <param name="initial_value">${initial[joint_name]}</param>
+      </state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+  </xacro:macro>
+  <ros2_control name="IimtSystem" type="system">
+    <hardware>
+      <xacro:if value="$(arg use_mock_hardware)">
+        <plugin>mock_components/GenericSystem</plugin>
+      </xacro:if>
+      <xacro:unless value="$(arg use_mock_hardware)">
+        <plugin>iimt_ros2_control/IimtSystem</plugin>
+        <param name="hardware_parameters_file">$(arg hardware_parameters_file)</param>
+        <param name="robot_ip">$(arg robot_ip)</param>
+        <param name="sdk_library_path">$(arg sdk_library_path)</param>
+        <param name="enable_motion">$(arg enable_motion)</param>
+        <param name="controller_update_rate">$(arg controller_update_rate)</param>
+      </xacro:unless>
+    </hardware>
+    <xacro:controlled_joint joint_name="shoulder_joint"/>
+    <xacro:controlled_joint joint_name="upper_arm_joint"/>
+    <xacro:controlled_joint joint_name="forearm_joint"/>
+    <xacro:controlled_joint joint_name="wrist_1_joint"/>
+    <xacro:controlled_joint joint_name="wrist_2_joint"/>
+    <xacro:controlled_joint joint_name="wrist_3_joint"/>
+  </ros2_control>
+</robot>

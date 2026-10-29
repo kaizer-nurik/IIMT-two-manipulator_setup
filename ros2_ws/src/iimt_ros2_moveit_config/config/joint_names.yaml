@@ -1,0 +1,7 @@
+controller_joint_names:
+    - shoulder_joint
+    - upper_arm_joint
+    - forearm_joint
+    - wrist_1_joint
+    - wrist_2_joint
+    - wrist_3_joint

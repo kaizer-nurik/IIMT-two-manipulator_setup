@@ -1,0 +1,38 @@
+/iimt_hardware:
+  ros__parameters:
+    # Startup-only values. Reconfigure to change; enable_motion is false by default.
+    robot_ip: "192.168.50.148"
+    sdk_library_path: ""
+    port: 29999
+    worker_priority: 0
+    require_realtime: false
+    enable_motion: false
+    lock_directory: "/tmp"
+    servo:
+      a: 7.0
+      v: 3.0
+      period: 0.03333333333333333
+      lookahead_time: 0.012
+      gain: 0.0
+    state_period: 0.03333333333333333
+    sdk_lock_timeout: 0.006 # Process-wide SDK serialization wait; not a call timeout.
+    # Fatal for ServoJ/armed reads; successful unclaimed slow reads report WARN + timing stats.
+    sdk_budget: 0.025 # 25 ms per call; combined send/read must still fit 33.33 ms.
+    command_timeout: 0.1
+    state_timeout: 0.1
+    startup_timeout: 10.0
+    max_lateness: 0.016
+    command_jitter_tolerance: 0.004
+    ros_clock_jump: 0.1
+    diagnostics_period: 1.0
+    controller_cancel_service: "/iimt_group_controller/follow_joint_trajectory/_action/cancel_goal"
+    controller_cancel_timeout: 1.0
+    # Conservative commissioning guards, NOT certified manufacturer limits.
+    # Position bounds match CI-05 URDF; choose verified bounds for other models.
+    limits:
+      min_position: [-6.2832, -2.6167, -2.8783, -3.0528, -3.0528, -6.2832]
+      max_position: [6.2832, 2.6167, 2.8783, 3.0528, 3.0528, 6.2832]
+      max_velocity: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+      max_acceleration: [1.875, 2.0, 2.0, 2.0, 2.0, 2.0]
+      max_step: [0.02, 0.02, 0.02, 0.02, 0.02, 0.02]
+      tracking_tolerance: [0.2, 0.2, 0.2, 0.2, 0.2, 0.2]

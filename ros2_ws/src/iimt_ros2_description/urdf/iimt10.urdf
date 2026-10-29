@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="iimt10">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.00047269 -0.0004676 0.02738"
+        rpy="0 0 0" />
+      <mass
+        value="2.3031" />
+      <inertia
+        ixx="0.0069162"
+        ixy="-5.9574E-05"
+        ixz="2.09E-05"
+        iyy="0.0069278"
+        iyz="-1.9861E-05"
+        izz="0.012216" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://iimt_ros2_description/meshes/iimt10/visual/base_link.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.69804 0.69804 0.69804 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://iimt_ros2_description/meshes/iimt10/collision/base_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="shoulder_link">
+    <inertial>
+      <origin
+        xyz="5.30985756371699E-05 -0.00412922343942951 -0.0290762067863636"
+        rpy="0 0 0" />
+      <mass
+        value="10.2915484040363" />
+      <inertia
+        ixx="0.0170461354869504"
+        ixy="6.94859190531398E-06"
+        ixz="-1.68942511450288E-06"
+        iyy="0.0172630960585954"
+        iyz="0.000519058274477763"
+        izz="0.0252578855389234" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://iimt_ros2_description/meshes/iimt10/visual/shoulder_link.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://iimt_ros2_description/meshes/iimt10/collision/shoulder_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="shoulder_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 0.1555"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="shoulder_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-6.2832"
+      upper="6.2832"
+      effort="300"
+      velocity="2.6167" />
+  </joint>
+  <link
+    name="upper_arm_link">
+    <inertial>
+      <origin
+        xyz="-0.19406 -2.2321E-05 0.15562"
+        rpy="0 0 0" />
+      <mass
+        value="17.366" />
+      <inertia
+        ixx="0.031093"
+        ixy="-1.3371E-05"
+        ixz="0.00032396"
+        iyy="0.09183"
+        iyz="1.2595E-07"
+        izz="0.10205" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://iimt_ros2_description/meshes/iimt10/visual/upper_arm_link.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://iimt_ros2_description/meshes/iimt10/collision/upper_arm_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="upper_arm_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="1.5708 0 0" />
+    <parent
+      link="shoulder_link" />
+    <child
+      link="upper_arm_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-2.6167"
+      upper="2.6167"
+      effort="300"
+      velocity="2.6167" />
+  </joint>
+  <link
+    name="forearm_link">
+    <inertial>
+      <origin
+        xyz="-0.37825 2.4948E-05 0.044414"
+        rpy="0 0 0" />
+      <mass
+        value="6.6031" />
+      <inertia
+        ixx="0.008393"
+        ixy="1.9756E-06"
+        ixz="-0.0003407"
+        iyy="0.042273"
+        iyz="9.097E-07"
+        izz="0.043318" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://iimt_ros2_description/meshes/iimt10/visual/fore_arm_link.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.69804 0.69804 0.69804 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://iimt_ros2_description/meshes/iimt10/collision/fore_arm_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="forearm_joint"
+    type="revolute">
+    <origin
+      xyz="-0.605 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="upper_arm_link" />
+    <child
+      link="forearm_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-2.8783"
+      upper="2.8783"
+      effort="150"
+      velocity="2.6167" />
+  </joint>
+  <link
+    name="wrist_1_link">
+    <inertial>
+      <origin
+        xyz="4.35161297616116E-05 -0.0232971966317018 -0.00260405922948265"
+        rpy="0 0 0" />
+      <mass
+        value="3.32734734469684" />
+      <inertia
+        ixx="0.00241961578599449"
+        ixy="-9.28094268113245E-07"
+        ixz="-6.97165735767584E-07"
+        iyy="0.0032336768080465"
+        iyz="0.000161339909667515"
+        izz="0.00237893027617734" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://iimt_ros2_description/meshes/iimt10/visual/wrist_1_link.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://iimt_ros2_description/meshes/iimt10/collision/wrist_1_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wrist_1_joint"
+    type="revolute">
+    <origin
+      xyz="-0.5645 0 0.16"
+      rpy="0 0 0" />
+    <parent
+      link="forearm_link" />
+    <child
+      link="wrist_1_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.0528"
+      upper="3.0528"
+      effort="68"
+      velocity="3.14" />
+  </joint>
+  <link
+    name="wrist_2_link">
+    <inertial>
+      <origin
+        xyz="-4.3516E-05 -0.023297 0.0026041"
+        rpy="0 0 0" />
+      <mass
+        value="3.3273" />
+      <inertia
+        ixx="0.0024196"
+        ixy="9.2809E-07"
+        ixz="-6.9717E-07"
+        iyy="0.0032337"
+        iyz="-0.00016134"
+        izz="0.0023789" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://iimt_ros2_description/meshes/iimt10/visual/wrist_2_link.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://iimt_ros2_description/meshes/iimt10/collision/wrist_2_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wrist_2_joint"
+    type="revolute">
+    <origin
+      xyz="0 -0.1305 0"
+      rpy="-1.5708 3.1415926 0" />
+    <parent
+      link="wrist_1_link" />
+    <child
+      link="wrist_2_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.0528"
+      upper="3.0528"
+      effort="68"
+      velocity="3.14" />
+  </joint>
+  <link
+    name="wrist_3_link">
+    <inertial>
+      <origin
+        xyz="-4.5132E-05 -1.6541E-05 -0.016846"
+        rpy="0 0 0" />
+      <mass
+        value="0.51761" />
+      <inertia
+        ixx="0.00048935"
+        ixy="1.181E-05"
+        ixz="-7.7149E-08"
+        iyy="0.00048548"
+        iyz="3.546E-08"
+        izz="0.00078164" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://iimt_ros2_description/meshes/iimt10/visual/wrist_3_link.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://iimt_ros2_description/meshes/iimt10/collision/wrist_3_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wrist_3_joint"
+    type="revolute">
+    <origin
+      xyz="0 -0.1174 0"
+      rpy="1.5708 0 0" />
+    <parent
+      link="wrist_2_link" />
+    <child
+      link="wrist_3_link" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-6.2832"
+      upper="6.2832"
+      effort="68"
+      velocity="3.14" />
+  </joint>
+</robot>

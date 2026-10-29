@@ -1,0 +1,46 @@
+name: iimt-manipulation
+x-common: &common
+  image: iimt-manipulation:humble
+  build: .
+  platform: linux/amd64
+  network_mode: host
+  init: false  # Image entrypoint already uses tini.
+  env_file:
+    - path: .env
+      required: false
+  environment: &environment
+    ROS_DOMAIN_ID: ${ROS_DOMAIN_ID:-0}
+    RMW_IMPLEMENTATION: ${RMW_IMPLEMENTATION:-rmw_cyclonedds_cpp}
+    USE_MOCK_HARDWARE: ${USE_MOCK_HARDWARE:-true}
+    ENABLE_MOTION: ${ENABLE_MOTION:-false}
+    LAUNCH_RVIZ: ${LAUNCH_RVIZ:-false}
+    LAUNCH_ARGS: ${LAUNCH_ARGS:-}
+  volumes:
+    - ./notebooks:/opt/iimt/notebooks
+    - ./data:/opt/iimt/data:ro
+    - ./results:/opt/iimt/results
+    - ./config:/opt/iimt/config:ro
+    - launch-lock:/run/iimt
+  working_dir: /opt/iimt
+  stop_grace_period: 30s
+services:
+  single:
+    <<: *common
+    profiles: [single]
+    command: [python, /opt/iimt/docker/launch.py, single]
+  dual:
+    <<: *common
+    profiles: [dual]
+    command: [python, /opt/iimt/docker/launch.py, dual]
+  notebook:
+    <<: *common
+    profiles: [notebook]
+    command: [/opt/iimt/docker/notebook.sh]
+  tools:
+    <<: *common
+    profiles: [tools]
+    command: [bash]
+    stdin_open: true
+    tty: true
+volumes:
+  launch-lock:
