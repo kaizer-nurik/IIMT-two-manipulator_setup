@@ -385,7 +385,7 @@
     <child
       link="wrist_3_link" />
     <axis
-      xyz="0 0 -1" />
+      xyz="0 0 1" />
     <limit
       lower="-6.2832"
       upper="6.2832"

@@ -195,7 +195,7 @@
     <origin xyz="0 0.103 0" rpy="-1.5708 0 0" />
     <parent link="${prefix}wrist_2_link" />
     <child link="${prefix}wrist_3_link" />
-    <axis xyz="0 0 -1" />
+    <axis xyz="0 0 1" />
     <limit lower="-6.2832" upper="6.2832" effort="35" velocity="3.14" />
   </joint>
 </xacro:macro>
